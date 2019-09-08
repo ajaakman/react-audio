@@ -1,5 +1,6 @@
 import React from "react";
 import Oscillator from "./Oscillator.jsx";
+import LPFilter from "./LPFilter.jsx";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 
@@ -10,6 +11,18 @@ const Controls = props => {
       type = (
         <Grid item xs align="center">
           <Oscillator
+            comp={props.comp}
+            deleteComp={props.deleteComp}
+            setOut={props.setOut}
+            selecting={props.selecting}
+          />
+        </Grid>
+      );
+      break;
+    case "LPFilter":
+      type = (
+        <Grid item xs align="center">
+          <LPFilter
             comp={props.comp}
             deleteComp={props.deleteComp}
             setOut={props.setOut}

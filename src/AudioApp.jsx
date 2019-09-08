@@ -36,6 +36,16 @@ class AudioApp extends Component {
             }
           ];
           break;
+        case "LPFilter":
+          newcomponents = [
+            ...prevState.components,
+            {
+              id: shortid.generate(),
+              outId: null,
+              type: "LPFilter"
+            }
+          ];
+          break;
         default:
           newcomponents = prevState.components;
           console.error("Invalid Component Type!!!");

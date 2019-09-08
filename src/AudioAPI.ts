@@ -24,3 +24,23 @@ export const OscSetFreq = Module.cwrap("OscSetFreq", null, [
 ]);
 export const OscSetAmp = Module.cwrap("OscSetAmp", null, ["number", "number"]);
 export const OscGetAmp = Module.cwrap("OscGetAmp", "number", ["number"]);
+
+export const OscSetPhase = Module.cwrap("OscSetPhase", null, [
+  "number",
+  "number"
+]);
+export const OscGetPhase = Module.cwrap("OscGetPhase", "number", ["number"]);
+
+export const OscSetWave = Module.cwrap("OscSetWave", null, [
+  "number",
+  "number"
+]);
+export const OscGetWave = Module.cwrap("OscGetWave", "number", ["number"]);
+
+export const CompAddLP = Module.cwrap("CompAddLP", "number", null);
+
+export const LPGetCutoff = Module.cwrap("LPGetCutoff", "number", ["number"]);
+export const LPSetCutoff = Module.cwrap("LPSetCutoff", null, [
+  "number",
+  "number"
+]);

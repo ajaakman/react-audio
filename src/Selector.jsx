@@ -23,6 +23,17 @@ const Selector = props => {
             Oscillator
           </Button>
         </Grid>
+        <Grid item xs align="center">
+          <Button
+            color="default"
+            variant="contained"
+            fullWidth={true}
+            disableRipple={true}
+            onClick={() => props.createComp("LPFilter")}
+          >
+            LPFilter
+          </Button>
+        </Grid>
       </Grid>
     </div>
   );
