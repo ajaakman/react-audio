@@ -41,7 +41,7 @@ class LPFilter extends Component {
           </Grid>
           <Grid item xs={4}>
             <Input
-              style={{ width: 56 }}
+              style={{ width: 64 }}
               value={LPGetCutoff(this.props.comp)}
               margin="dense"
               onChange={event => {
@@ -57,7 +57,7 @@ class LPFilter extends Component {
               inputProps={{
                 step: 1,
                 min: 0,
-                max: 6000,
+                max: 20000,
                 type: "number",
                 "aria-labelledby": "input-slider"
               }}
@@ -68,7 +68,7 @@ class LPFilter extends Component {
           <Grid item xs>
             <Slider
               min={0}
-              max={6000}
+              max={20000}
               step={1}
               value={LPGetCutoff(this.props.comp)}
               onChange={(event, newValue) => {
