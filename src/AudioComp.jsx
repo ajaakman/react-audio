@@ -2,22 +2,13 @@ import React, { Component } from "react";
 import LineTo from "react-lineto";
 import Button from "@material-ui/core/Button";
 import Draggable from "./Draggable.jsx";
-import { CompAddOsc, CompAddLP, CompDelete } from "./AudioAPI.ts";
+import { CompDelete } from "./AudioAPI.ts";
+import { CreateComponent } from "./AudioComps.js";
 
 class AudioComp extends Component {
   constructor(props) {
     super(props);
-    switch (this.props.type) {
-      case "Oscillator":
-        this.comp = CompAddOsc(this.props.freq, this.props.amp);
-        break;
-      case "LPFilter":
-        this.comp = CompAddLP();
-        break;
-      default:
-        console.error("Incorrect Draggable Type!!!");
-        break;
-    }
+    this.comp = CreateComponent(this.props.type);
   }
 
   componentDidMount() {

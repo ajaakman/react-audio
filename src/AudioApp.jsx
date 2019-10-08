@@ -23,33 +23,16 @@ class AudioApp extends Component {
 
     this.setState(prevState => {
       let newcomponents = [];
-      switch (type) {
-        case "Oscillator":
-          newcomponents = [
-            ...prevState.components,
-            {
-              id: shortid.generate(),
-              outId: null,
-              type: "Oscillator",
-              amp: "0.0",
-              freq: "220.0"
-            }
-          ];
-          break;
-        case "LPFilter":
-          newcomponents = [
-            ...prevState.components,
-            {
-              id: shortid.generate(),
-              outId: null,
-              type: "LPFilter"
-            }
-          ];
-          break;
-        default:
-          newcomponents = prevState.components;
-          console.error("Invalid Component Type!!!");
-      }
+
+      newcomponents = [
+        ...prevState.components,
+        {
+          id: shortid.generate(),
+          outId: null,
+          type: type
+        }
+      ];
+
       return {
         components: newcomponents
       };

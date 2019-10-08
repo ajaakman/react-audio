@@ -1,40 +1,9 @@
 import React from "react";
-import Oscillator from "./Oscillator.jsx";
-import LPFilter from "./LPFilter.jsx";
 import Grid from "@material-ui/core/Grid";
+import { GetComponent } from "./AudioComps.js";
 import Typography from "@material-ui/core/Typography";
 
 const Controls = props => {
-  let type = null;
-  switch (props.type) {
-    case "Oscillator":
-      type = (
-        <Grid item xs align="center">
-          <Oscillator
-            comp={props.comp}
-            deleteComp={props.deleteComp}
-            setOut={props.setOut}
-            selecting={props.selecting}
-          />
-        </Grid>
-      );
-      break;
-    case "LPFilter":
-      type = (
-        <Grid item xs align="center">
-          <LPFilter
-            comp={props.comp}
-            deleteComp={props.deleteComp}
-            setOut={props.setOut}
-            selecting={props.selecting}
-          />
-        </Grid>
-      );
-      break;
-    default:
-      type = null;
-  }
-
   return (
     <div className="rsidebar">
       <Grid container spacing={3} className="sidebar" align="center">
@@ -43,7 +12,15 @@ const Controls = props => {
             Controls:
           </Typography>
         </Grid>
-        {type}
+        <Grid item xs align="center">
+          {GetComponent(
+            props.type,
+            props.comp,
+            props.deleteComp,
+            props.setOut,
+            props.selecting
+          )}
+        </Grid>
       </Grid>
     </div>
   );
