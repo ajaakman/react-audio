@@ -4,13 +4,12 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import Slider from "@material-ui/core/Slider";
 import Input from "@material-ui/core/Input";
-import { LPSetCutoff, LPGetCutoff } from "./AudioAPI.ts";
 
 class LPFilter extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      cutoffval: LPGetCutoff(this.props.comp)
+      cutoffval: this.props.comp.GetCutoff()
     };
   }
 
@@ -42,11 +41,10 @@ class LPFilter extends Component {
           <Grid item xs={4}>
             <Input
               style={{ width: 64 }}
-              value={LPGetCutoff(this.props.comp)}
+              value={this.props.comp.GetCutoff()}
               margin="dense"
               onChange={event => {
-                LPSetCutoff(
-                  this.props.comp,
+                this.props.comp.SetCutoff(
                   event.target.value === "" ? "" : Number(event.target.value)
                 );
                 this.setState({
@@ -70,9 +68,9 @@ class LPFilter extends Component {
               min={0}
               max={20000}
               step={1}
-              value={LPGetCutoff(this.props.comp)}
+              value={this.props.comp.GetCutoff()}
               onChange={(event, newValue) => {
-                LPSetCutoff(this.props.comp, newValue);
+                this.props.comp.SetCutoff(newValue);
                 this.setState({ cutoffval: newValue });
               }}
               aria-labelledby="input-slider"

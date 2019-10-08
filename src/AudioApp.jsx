@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { CompSetOut } from "./AudioAPI.ts";
 import ReactResizeDetector from "react-resize-detector";
 import shortid from "shortid";
 import Selector from "./Selector.jsx";
@@ -19,7 +18,7 @@ class AudioApp extends Component {
   }
 
   createComp = type => {
-    if (!this.props.initialized) this.props.loadAudio();
+    //if (!this.props.initialized) this.props.loadAudio(); // TODO.
 
     this.setState(prevState => {
       let newcomponents = [];
@@ -61,7 +60,7 @@ class AudioApp extends Component {
   };
 
   selectOut = (comp, out, id) => {
-    comp === out ? CompSetOut(comp, null) : CompSetOut(comp, out);
+    comp === out ? comp.SetOut(0) : comp.SetOut(out.Get());
 
     this.setState(prevState => {
       let items = prevState.components;
@@ -110,6 +109,7 @@ class AudioApp extends Component {
           selectComp={this.selectComp}
           selecting={this.state.selecting}
           selectOut={this.selectOut}
+          audio={this.props.audio}
         />
         <Controls
           comp={this.state.comp}

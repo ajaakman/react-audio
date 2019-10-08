@@ -19,7 +19,11 @@ const Main = props => {
           selectOut={props.selectOut}
         />
       ))}
-      <MasterMixer selecting={props.selecting} selectOut={props.selectOut} />
+      <MasterMixer
+        selecting={props.selecting}
+        selectOut={props.selectOut}
+        audio={props.audio}
+      />
     </div>
   );
 };

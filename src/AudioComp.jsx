@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import LineTo from "react-lineto";
 import Button from "@material-ui/core/Button";
 import Draggable from "./Draggable.jsx";
-import { CompDelete } from "./AudioAPI.ts";
 import { CreateComponent } from "./AudioComps.js";
 
 class AudioComp extends Component {
@@ -16,7 +15,8 @@ class AudioComp extends Component {
   }
 
   componentWillUnmount() {
-    CompDelete(this.comp);
+    this.comp.delete();
+    this.comp = null;
   }
 
   selectComp = () => {

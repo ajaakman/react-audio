@@ -7,25 +7,15 @@ import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Input from "@material-ui/core/Input";
-import {
-  OscSetAmp,
-  OscGetAmp,
-  OscSetFreq,
-  OscGetFreq,
-  OscSetPhase,
-  OscGetPhase,
-  OscSetWave,
-  OscGetWave
-} from "./AudioAPI.ts";
 
 class Oscillator extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      ampval: OscGetAmp(this.props.comp),
-      freqval: OscGetFreq(this.props.comp),
-      phaseval: OscGetPhase(this.props.comp),
-      waveval: OscGetWave(this.props.comp)
+      ampval: this.props.comp.GetAmp(),
+      freqval: this.props.comp.GetFreq(),
+      phaseval: this.props.comp.GetPhase(),
+      waveval: this.props.comp.GetWave()
     };
   }
 
@@ -53,9 +43,9 @@ class Oscillator extends Component {
           <Grid item xs align="center">
             <RadioGroup
               row
-              value={OscGetWave(this.props.comp).toString()}
+              value={this.props.comp.GetWave().toString()}
               onChange={event => {
-                OscSetWave(this.props.comp, Number(event.target.value));
+                this.props.comp.SetWave(Number(event.target.value));
                 this.setState({ waveval: event.target.value });
               }}
             >
@@ -99,11 +89,10 @@ class Oscillator extends Component {
           <Grid item xs={4}>
             <Input
               style={{ width: 56 }}
-              value={OscGetAmp(this.props.comp)}
+              value={this.props.comp.GetAmp()}
               margin="dense"
               onChange={event => {
-                OscSetAmp(
-                  this.props.comp,
+                this.props.comp.SetAmp(
                   event.target.value === "" ? "" : Number(event.target.value)
                 );
                 this.setState({
@@ -127,9 +116,9 @@ class Oscillator extends Component {
               min={0.0}
               max={1.0}
               step={0.001}
-              value={OscGetAmp(this.props.comp)}
+              value={this.props.comp.GetAmp()}
               onChange={(event, newValue) => {
-                OscSetAmp(this.props.comp, newValue);
+                this.props.comp.SetAmp(newValue);
                 this.setState({ ampval: newValue });
               }}
               aria-labelledby="input-slider"
@@ -145,11 +134,10 @@ class Oscillator extends Component {
           <Grid item xs={4} align="center">
             <Input
               style={{ width: 56 }}
-              value={OscGetFreq(this.props.comp)}
+              value={this.props.comp.GetFreq()}
               margin="dense"
               onChange={event => {
-                OscSetFreq(
-                  this.props.comp,
+                this.props.comp.SetFreq(
                   event.target.value === "" ? "" : Number(event.target.value)
                 );
                 this.setState({
@@ -173,9 +161,9 @@ class Oscillator extends Component {
               min={220}
               max={1760}
               step={1}
-              value={OscGetFreq(this.props.comp)}
+              value={this.props.comp.GetFreq()}
               onChange={(event, newValue) => {
-                OscSetFreq(this.props.comp, newValue);
+                this.props.comp.SetFreq(newValue);
                 this.setState({ freqval: newValue });
               }}
               aria-labelledby="input-slider"
@@ -191,11 +179,10 @@ class Oscillator extends Component {
           <Grid item xs={4} align="center">
             <Input
               style={{ width: 56 }}
-              value={OscGetPhase(this.props.comp)}
+              value={this.props.comp.GetPhase()}
               margin="dense"
               onChange={event => {
-                OscSetPhase(
-                  this.props.comp,
+                this.props.comp.SetPhase(
                   event.target.value === "" ? "" : Number(event.target.value)
                 );
                 this.setState({
@@ -219,9 +206,9 @@ class Oscillator extends Component {
               min={0}
               max={1}
               step={0.001}
-              value={OscGetPhase(this.props.comp)}
+              value={this.props.comp.GetPhase()}
               onChange={(event, newValue) => {
-                OscSetPhase(this.props.comp, newValue);
+                this.props.comp.SetPhase(newValue);
                 this.setState({ phaseval: newValue });
               }}
               aria-labelledby="input-slider"

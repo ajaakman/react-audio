@@ -4,12 +4,11 @@ import VolumeDown from "@material-ui/icons/VolumeDown";
 import VolumeUp from "@material-ui/icons/VolumeUp";
 import Slider from "@material-ui/core/Slider";
 import shortid from "shortid";
-import { MasterSetAmp, MasterGetAmp, MasterComp } from "./AudioAPI.ts";
 
 class MasterMixer extends Component {
   constructor(props) {
     super(props);
-    this.state = { ampval: MasterGetAmp() };
+    this.state = { ampval: this.props.audio.GetAmp() };
     this.id = shortid.generate();
   }
 
@@ -22,7 +21,11 @@ class MasterMixer extends Component {
       <div
         onClick={() => {
           this.props.selecting &&
-            this.props.selectOut(this.props.selecting, MasterComp(), this.id);
+            this.props.selectOut(
+              this.props.selecting,
+              this.props.audio,
+              this.id
+            );
         }}
         className={"masterMixer " + this.id}
       >
@@ -36,10 +39,10 @@ class MasterMixer extends Component {
               min={0.0}
               max={1.0}
               step={0.001}
-              value={MasterGetAmp()}
+              value={this.props.audio.GetAmp()}
               onChange={(event, newValue) => {
                 if (!this.props.selecting) {
-                  MasterSetAmp(newValue);
+                  this.props.audio.SetAmp(newValue);
                   this.setState({ ampval: newValue });
                 }
               }}

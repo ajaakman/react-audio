@@ -1,16 +1,16 @@
 import React from "react";
 import Oscillator from "./Oscillator.jsx";
 import LPFilter from "./LPFilter.jsx";
-import { CompAddOsc, CompAddLP } from "./AudioAPI.ts";
+import Audio from "./AudioAPI.ts";
 
 export const AudioComps = ["Oscillator", "LPFilter"];
 
 export const CreateComponent = type => {
   switch (type) {
     case "Oscillator":
-      return CompAddOsc(440, 0.0);
+      return new Audio.Osc();
     case "LPFilter":
-      return CompAddLP();
+      return new Audio.LP();
     default:
       console.error("Incorrect Draggable Type!!!");
       return null;

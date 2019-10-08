@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
-import { Audio, InitAudio } from "./AudioAPI.ts";
+import Audio from "./AudioAPI.ts";
 import AudioApp from "./AudioApp.jsx";
 import Error from "./Error.jsx";
 import Loading from "./Loading.jsx";
@@ -13,13 +13,21 @@ class App extends Component {
       initialized: false,
       runtime: false
     };
+    this.audio = null;
     Audio.onRuntimeInitialized = () => {
+      this.audio = new Audio.Master();
+      this.loadAudio();
       this.setState({ runtime: true });
     };
   }
 
+  componentWillUnmount() {
+    this.audio.delete();
+    this.audio = null;
+  }
+
   loadAudio = () => {
-    let err = InitAudio();
+    let err = this.audio.InitAudio();
     err ? this.setState({ error: err }) : this.setState({ initialized: true });
   };
 
@@ -34,6 +42,7 @@ class App extends Component {
         <AudioApp
           initialized={this.state.initialized}
           loadAudio={this.loadAudio}
+          audio={this.audio}
         />
       );
 
