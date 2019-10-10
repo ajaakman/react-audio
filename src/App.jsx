@@ -27,7 +27,7 @@ class App extends Component {
   }
 
   loadAudio = () => {
-    let err = this.audio.InitAudio();
+    let err = this.audio.initAudio();
     err ? this.setState({ error: err }) : this.setState({ initialized: true });
   };
 

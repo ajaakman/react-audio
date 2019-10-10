@@ -12,10 +12,10 @@ class Oscillator extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      ampval: this.props.comp.GetAmp(),
-      freqval: this.props.comp.GetFreq(),
-      phaseval: this.props.comp.GetPhase(),
-      waveval: this.props.comp.GetWave()
+      ampval: this.props.comp.getAmp(),
+      freqval: this.props.comp.getFreq(),
+      phaseval: this.props.comp.getPhase(),
+      waveval: this.props.comp.getWave()
     };
   }
 
@@ -43,9 +43,9 @@ class Oscillator extends Component {
           <Grid item xs align="center">
             <RadioGroup
               row
-              value={this.props.comp.GetWave().toString()}
+              value={this.props.comp.getWave().toString()}
               onChange={event => {
-                this.props.comp.SetWave(Number(event.target.value));
+                this.props.comp.setWave(Number(event.target.value));
                 this.setState({ waveval: event.target.value });
               }}
             >
@@ -89,10 +89,10 @@ class Oscillator extends Component {
           <Grid item xs={4}>
             <Input
               style={{ width: 56 }}
-              value={this.props.comp.GetAmp()}
+              value={this.props.comp.getAmp()}
               margin="dense"
               onChange={event => {
-                this.props.comp.SetAmp(
+                this.props.comp.setAmp(
                   event.target.value === "" ? "" : Number(event.target.value)
                 );
                 this.setState({
@@ -116,9 +116,9 @@ class Oscillator extends Component {
               min={0.0}
               max={1.0}
               step={0.001}
-              value={this.props.comp.GetAmp()}
+              value={this.props.comp.getAmp()}
               onChange={(event, newValue) => {
-                this.props.comp.SetAmp(newValue);
+                this.props.comp.setAmp(newValue);
                 this.setState({ ampval: newValue });
               }}
               aria-labelledby="input-slider"
@@ -134,10 +134,10 @@ class Oscillator extends Component {
           <Grid item xs={4} align="center">
             <Input
               style={{ width: 56 }}
-              value={this.props.comp.GetFreq()}
+              value={this.props.comp.getFreq()}
               margin="dense"
               onChange={event => {
-                this.props.comp.SetFreq(
+                this.props.comp.setFreq(
                   event.target.value === "" ? "" : Number(event.target.value)
                 );
                 this.setState({
@@ -161,9 +161,9 @@ class Oscillator extends Component {
               min={220}
               max={1760}
               step={1}
-              value={this.props.comp.GetFreq()}
+              value={this.props.comp.getFreq()}
               onChange={(event, newValue) => {
-                this.props.comp.SetFreq(newValue);
+                this.props.comp.setFreq(newValue);
                 this.setState({ freqval: newValue });
               }}
               aria-labelledby="input-slider"
@@ -179,10 +179,10 @@ class Oscillator extends Component {
           <Grid item xs={4} align="center">
             <Input
               style={{ width: 56 }}
-              value={this.props.comp.GetPhase()}
+              value={this.props.comp.getPhase()}
               margin="dense"
               onChange={event => {
-                this.props.comp.SetPhase(
+                this.props.comp.setPhase(
                   event.target.value === "" ? "" : Number(event.target.value)
                 );
                 this.setState({
@@ -206,9 +206,9 @@ class Oscillator extends Component {
               min={0}
               max={1}
               step={0.001}
-              value={this.props.comp.GetPhase()}
+              value={this.props.comp.getPhase()}
               onChange={(event, newValue) => {
-                this.props.comp.SetPhase(newValue);
+                this.props.comp.setPhase(newValue);
                 this.setState({ phaseval: newValue });
               }}
               aria-labelledby="input-slider"

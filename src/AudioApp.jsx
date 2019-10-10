@@ -60,7 +60,7 @@ class AudioApp extends Component {
   };
 
   selectOut = (comp, out, id) => {
-    comp === out ? comp.SetOut(0) : comp.SetOut(out.Get());
+    comp === out ? comp.setOut(0) : comp.setOut(out.get());
 
     this.setState(prevState => {
       let items = prevState.components;

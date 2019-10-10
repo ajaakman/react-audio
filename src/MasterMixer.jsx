@@ -8,7 +8,7 @@ import shortid from "shortid";
 class MasterMixer extends Component {
   constructor(props) {
     super(props);
-    this.state = { ampval: this.props.audio.GetAmp() };
+    this.state = { ampval: this.props.audio.getAmp() };
     this.id = shortid.generate();
   }
 
@@ -39,10 +39,10 @@ class MasterMixer extends Component {
               min={0.0}
               max={1.0}
               step={0.001}
-              value={this.props.audio.GetAmp()}
+              value={this.props.audio.getAmp()}
               onChange={(event, newValue) => {
                 if (!this.props.selecting) {
-                  this.props.audio.SetAmp(newValue);
+                  this.props.audio.setAmp(newValue);
                   this.setState({ ampval: newValue });
                 }
               }}

@@ -9,7 +9,7 @@ class LPFilter extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      cutoffval: this.props.comp.GetCutoff()
+      cutoffval: this.props.comp.getCutoff()
     };
   }
 
@@ -41,10 +41,10 @@ class LPFilter extends Component {
           <Grid item xs={4}>
             <Input
               style={{ width: 64 }}
-              value={this.props.comp.GetCutoff()}
+              value={this.props.comp.getCutoff()}
               margin="dense"
               onChange={event => {
-                this.props.comp.SetCutoff(
+                this.props.comp.setCutoff(
                   event.target.value === "" ? "" : Number(event.target.value)
                 );
                 this.setState({
@@ -68,9 +68,9 @@ class LPFilter extends Component {
               min={0}
               max={20000}
               step={1}
-              value={this.props.comp.GetCutoff()}
+              value={this.props.comp.getCutoff()}
               onChange={(event, newValue) => {
-                this.props.comp.SetCutoff(newValue);
+                this.props.comp.setCutoff(newValue);
                 this.setState({ cutoffval: newValue });
               }}
               aria-labelledby="input-slider"
